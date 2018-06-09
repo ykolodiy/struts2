@@ -1,1 +1,30 @@
 https://www.youtube.com/watch?v=DjeAqwW_J2U&index=17&list=PLB7BB551126EDD5E0
+
+
+
+accepted
+Use of # (pound sign)
+
+OGNL is used to refer to objects in the ActionContext as follows:
+
+objectName: object in the ValueStack (default/root object in the OGNL context), such as an Action property
+#objectName: object in the ActionContext but outside of the ValueStack, specifically...
+#objectName: ActionContext object that has been created using the Struts2 data tags with the default action scope (e.g., <s:set name="foo" value="'Testing'" />, referenced by <s:property value="#foo" />)
+#parameters.objectName: request parameter
+#request.objectName: request-scoped attribute
+#session.objectName: session-scoped attribute
+#application.objectName: application-scoped attribute
+#attr.objectName: attribute in page, request, session, or application scope (searched in that order)
+The scoped map references above (parameters, request, session, and application) can be made one of two ways:
+
+#scopeName.objectName or
+#scopeName['objectName']
+Use of % (percent sign)
+
+%{ OGNL expression } is used to force OGNL evaluation of an attribute that would normally be interpreted as a String literal.
+
+Example: <s:property value="myProperty" default="%{myDynamicDefaultValue}" />
+
+Use of @ (at sign)
+
+The @ symbol is used to make references to static properties and methods. Note that you may need to enable this in your Struts2 properties: struts.ognl.allowStaticMethodAccess=true
